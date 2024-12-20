@@ -1,6 +1,6 @@
 // const CoverLetter = require("../models/CoverLetter");
-const scrapeJobDetails = require("../services/scraper");
-const { chatgpt, geminiModel } = require("../services/GenAIProviders");
+const scrapeJobDetails = require("../services/scraperService");
+const { chatgpt, geminiModel } = require("../services/GenAIProvidersService");
 const generatePDF = require("../utils/pdfGenerator");
 
 exports.createCoverLetter = async (req, res) => {
@@ -11,6 +11,7 @@ exports.createCoverLetter = async (req, res) => {
     const jobDetails = await scrapeJobDetails(jobUrl);
     if (!jobDetails)
       return res.status(400).json({ error: "Failed to scrape job details" });
+    
     const existingCoverLetter =
       "I am writing to express my enthusiasm for the Software Engineering Internship at Xometry. As a Masters student in Computer Science at SUNY Binghamton University, and with a Bachelors degree from GITAM University in India, I am eager to apply my academic background and software development experience to make a meaningful impact at your innovative company.During my time as a Software Engineer at Virtusa Consulting Services, I gained hands-on experience designing and developing scalable software solutions. This experience honed my technical skills while fostering strong collaboration with cross-functional teams to address complex challenges. I developed proficiency in version control, debugging, and code optimization, all of which align with the core responsibilities of the internship. Furthermore, I collaborated on high-stakes projects and was actively involved in the end-to-end development lifecycle, which has given me a strong foundation for contributing to Xometrys platform. My academic projects in machine learning and data processing have enhanced my problem-solving abilities and my adaptability in fast-paced environments. I am excited by the prospect of applying these skills to real-world challenges at Xometry, where I can contribute to the design, development, and testing of scalable software solutions. In addition to my technical capabilities, I am committed to continuous learning and professional growth. The opportunity to be mentored by experienced professionals and participate in Xometrys dynamic, collaborative environment excites me. I am particularly drawn to the entrepreneurial spirit at Xometry, as it mirrors my own passion for problem-solving and driving impactful results.I am confident that my skills, work ethic, and enthusiasm make me a great fit for this internship. I am available to work full-time during the summer internship period and am eager to contribute to Xometrys mission to connect innovative people with cutting-edge manufacturing solutions. I look forward to the opportunity to discuss how my background aligns with the needs of your team. Thank you for considering my application. I am excited about the possibility of contributing to Xometrys continued success.";
 
